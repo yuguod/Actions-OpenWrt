@@ -32,9 +32,9 @@ on:
 
 env:
   ###############手动修改##############
-  OPENWRT_NAME: padavan
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
-  REPO_BRANCH: 2410
+  OPENWRT_NAME: padavan237
+  REPO_URL: https://github.com/yuguod/padavan-24.10
+  REPO_BRANCH: master
   FEEDS_CONF: JDCloud-Baili-padavan/feeds.conf.default
   CONFIG_FILE: JDCloud-Baili-padavan/.config
   DIY_P1_SH: JDCloud-Baili-padavan/diy-part1.sh
