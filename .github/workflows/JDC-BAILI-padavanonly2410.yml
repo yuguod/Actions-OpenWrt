@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############手动修改##############
-name: JDCloud-AX6000-Baili-nekokecore2
+name: JDCloud-AX6000-Baili-Padavanonly2410
 
 on:
   repository_dispatch:
@@ -32,16 +32,17 @@ on:
 
 env:
   ###############手动修改##############
-  OPENWRT_NAME: nekokecore24.10
-  REPO_URL: https://github.com/NekokeCore/immortalwrt-mt798x-24.10
-  REPO_BRANCH: openwrt-24.10
-  FEEDS_CONF: JDCloud-AX6000-Baili-immortalwrt/feeds.conf.default
-  CONFIG_FILE: JDCloud-AX6000-Baili-immortalwrt/immortalwrt.config
-  DIY_P1_SH: JDCloud-AX6000-Baili-immortalwrt/diy-part1.sh
-  DIY_P2_SH: JDCloud-AX6000-Baili-immortalwrt/diy-part2.sh
+  OPENWRT_NAME: Padavanonly2410
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
+  REPO_BRANCH: 2410
+  FEEDS_CONF: JDC-baili-padavanonly/feeds.conf.default
+  CONFIG_FILE: JDC-baili-padavanonly/.config
+  DIY_P1_SH: JDC-baili-padavanonly/diy-part1.sh
+  DIY_P2_SH: JDC-baili-padavanonly/diy-part2.sh
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  UPLOAD_COWTRANSFER: true
   TZ: Asia/Shanghai
 
 jobs:
