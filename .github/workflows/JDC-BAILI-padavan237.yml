@@ -42,6 +42,7 @@ env:
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
+  UPLOAD_COWTRANSFER: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -199,12 +200,11 @@ jobs:
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 发布固件至Release
-      uses: softprops/action-gh-release@v2.1.0
+      uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        files: ${{ env.FIRMWARE }}/*
-        name: ${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
