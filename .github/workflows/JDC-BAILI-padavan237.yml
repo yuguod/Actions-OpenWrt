@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 ###############手动修改##############
-name: JDCloud-AX6000-Baili-padavan237
+name: JDCloud-AX6000-Baili-nekokecore2
 
 on:
   repository_dispatch:
@@ -32,17 +32,16 @@ on:
 
 env:
   ###############手动修改##############
-  OPENWRT_NAME: padavan237
-  REPO_URL: https://github.com/yuguod/padavan-24.10
-  REPO_BRANCH: master
-  FEEDS_CONF: JDCloud-Baili-padavan/feeds.conf.default
-  CONFIG_FILE: JDCloud-Baili-padavan/.config
-  DIY_P1_SH: JDCloud-Baili-padavan/diy-part1.sh
-  DIY_P2_SH: JDCloud-Baili-padavan/diy-part2.sh
+  OPENWRT_NAME: nekokecore24.10
+  REPO_URL: https://github.com/NekokeCore/immortalwrt-mt798x-24.10
+  REPO_BRANCH: openwrt-24.10
+  FEEDS_CONF: JDCloud-AX6000-Baili-immortalwrt/feeds.conf.default
+  CONFIG_FILE: JDCloud-AX6000-Baili-immortalwrt/immortalwrt.config
+  DIY_P1_SH: JDCloud-AX6000-Baili-immortalwrt/diy-part1.sh
+  DIY_P2_SH: JDCloud-AX6000-Baili-immortalwrt/diy-part2.sh
   SSH_ACTIONS: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  UPLOAD_COWTRANSFER: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -195,16 +194,24 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
         touch release.txt
-
-        echo "release_tag=${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}" >> $GITHUB_OUTPUT
+        echo "- 使用源码：${{ env.REPO_URL }}" >> release.txt
+        echo "- 使用分支：${{ env.REPO_BRANCH }}" >> release.txt
+        echo "- 登录地址：${{ env.IP_ADDR }}" >> release.txt
+        if [[ "${{ env.BUILD_DOCKERMAN }}" == '-docker' ]]; then
+                echo "- 已编译luci-app-dockerman" >> release.txt
+        else
+                echo "- 未编译luci-app-dockerman" >> release.txt
+        fi
+        echo "release_tag=${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}${{ env.BUILD_DOCKERMAN }}" >> $GITHUB_OUTPUT
         echo "status=success" >> $GITHUB_OUTPUT
 
     - name: 发布固件至Release
-      uses: softprops/action-gh-release@master
+      uses: softprops/action-gh-release@v2.1.0
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: JDC-BAILI
-        body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
+        name: ${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${{ env.DEVICE_NAME }}${{ env.BUILD_DOCKERMAN }}
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
