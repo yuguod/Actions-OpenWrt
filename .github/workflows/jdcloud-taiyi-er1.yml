@@ -34,7 +34,7 @@ env:
   ###############手动修改##############
   ##手动设置上传时候的打包名称和tag名称UPLOAD_TAG_NAME
   OPENWRT_NAME: immortalwrt
-  UPLOAD_TAG_NAME: jdcloud_re-cp-03
+  UPLOAD_TAG_NAME: jdcloud_taiyi_07
   REPO_URL: https://github.com/LiBwrt/openwrt-6.x
   REPO_BRANCH: master
   FEEDS_CONF: JDCloud-TaiYi-ER1/feeds.conf.default
