@@ -185,7 +185,7 @@ jobs:
                         if [ -f "$file" ]; then
                                 suffix="${file#*${val}}"
                                 new_name="${{ env.FILE_DATE }}-${{ env.OPENWRT_NAME }}-${val}${{ env.BUILD_DOCKERMAN }}${suffix}"
-                                mv "$file" "$new_name"
+                                mv -- "$file" "$new_name"
                                 echo "  Renamed: $file -> $new_name"
                         fi
                 done
