@@ -36,7 +36,7 @@ env:
   OPENWRT_NAME: immortalwrt
   UPLOAD_TAG_NAME: jdcloud-taiyi-07
   REPO_URL: https://github.com/LiBwrt/openwrt-6.x
-  REPO_BRANCH: master
+  REPO_BRANCH: main-nss
   FEEDS_CONF: JDCloud-TaiYi-ER1/feeds.conf.default
   CONFIG_FILE: JDCloud-TaiYi-ER1/taiyi-er1.config
   DIY_P1_SH: JDCloud-TaiYi-ER1/diy-part1.sh
