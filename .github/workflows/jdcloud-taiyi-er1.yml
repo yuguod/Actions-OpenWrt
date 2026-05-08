@@ -38,7 +38,7 @@ env:
   REPO_URL: https://github.com/LiBwrt/openwrt-6.x
   REPO_BRANCH: master
   FEEDS_CONF: JDCloud-TaiYi-ER1/feeds.conf.default
-  CONFIG_FILE: JDCloud-TaiYi-ER1/.taiyi-er1.config
+  CONFIG_FILE: JDCloud-TaiYi-ER1/taiyi-er1.config
   DIY_P1_SH: JDCloud-TaiYi-ER1/diy-part1.sh
   DIY_P2_SH: JDCloud-TaiYi-ER1/diy-part2.sh
   SSH_ACTIONS: false
